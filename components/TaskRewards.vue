@@ -3,7 +3,7 @@
     <h4 :class="[
       'font-medium text-dark-text mb-2',
       mobile ? 'text-sm' : ''
-    ]">Rewards:</h4>
+    ]">{{ $t('tasks.rewards') }}:</h4>
     <div :class="[
       'flex flex-wrap',
       mobile ? 'gap-1' : 'gap-2'

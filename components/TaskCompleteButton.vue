@@ -8,7 +8,7 @@
       mobile ? 'ml-auto px-3 py-1 text-xs' : 'px-4 py-2'
     ]"
   >
-    {{ completing ? 'Completing...' : 'Complete' }}
+    {{ completing ? $t('tasks.completing') : $t('tasks.complete') }}
   </button>
   <button
     v-else
@@ -19,7 +19,7 @@
       mobile ? 'ml-auto px-3 py-1 text-xs' : 'px-4 py-2'
     ]"
   >
-    {{ uncompleting ? 'Uncompleting...' : 'Uncomplete' }}
+    {{ uncompleting ? $t('tasks.uncompleting') : $t('tasks.uncomplete') }}
   </button>
 </template>
 

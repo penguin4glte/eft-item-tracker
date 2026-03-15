@@ -5,10 +5,10 @@
         <h1 class="text-2xl font-bold text-dark-text">{{ $t('hideout.title') }}</h1>
         <div class="text-right">
           <div class="text-lg font-semibold" :class="getOverallProgressClass()">
-            {{ getOverallCompletedLevels() }} / {{ getTotalLevels() }} levels
+            {{ getOverallCompletedLevels() }} / {{ getTotalLevels() }} {{ $t('hideout.levels') }}
           </div>
           <div class="text-sm text-dark-text-secondary">
-            {{ getOverallProgressPercentage() }}% Complete
+            {{ getOverallProgressPercentage() }}{{ $t('hideout.percent_complete') }}
           </div>
         </div>
       </div>
@@ -31,8 +31,8 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <span class="mobile-short-text">
-            <span class="mobile-long">AVAILABLE ({{ getTotalFilteredLevels('available') }})</span>
-            <span class="mobile-short">AVAIL</span>
+            <span class="mobile-long">{{ $t('hideout.available') }} ({{ getTotalFilteredLevels('available') }})</span>
+            <span class="mobile-short">{{ $t('hideout.available_short') }}</span>
           </span>
         </button>
         <button
@@ -48,8 +48,8 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
           </svg>
           <span class="mobile-short-text">
-            <span class="mobile-long">LOCKED ({{ getTotalFilteredLevels('locked') }})</span>
-            <span class="mobile-short">LOCK</span>
+            <span class="mobile-long">{{ $t('hideout.locked') }} ({{ getTotalFilteredLevels('locked') }})</span>
+            <span class="mobile-short">{{ $t('hideout.locked_short') }}</span>
           </span>
         </button>
         <button
@@ -61,7 +61,7 @@
               : 'text-dark-text-secondary hover:text-white'
           ]"
         >
-          ALL ({{ getTotalFilteredLevels('all') }})
+          {{ $t('hideout.all') }} ({{ getTotalFilteredLevels('all') }})
         </button>
       </div>
     </div>
@@ -72,7 +72,7 @@
         <div class="relative">
           <div class="w-12 h-12 border-4 border-dark-surface border-t-blue-500 rounded-full animate-spin"></div>
         </div>
-        <p class="text-dark-text-secondary text-sm">Loading hideout stations...</p>
+        <p class="text-dark-text-secondary text-sm">{{ $t('hideout.loading') }}</p>
       </div>
     </div>
 
@@ -107,8 +107,8 @@
         <svg class="w-16 h-16 mx-auto mb-4 text-dark-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
         </svg>
-        <h3 class="text-lg font-semibold text-dark-text mb-2">No hideout stations found</h3>
-        <p class="text-dark-text-secondary">Failed to load hideout data. Please try refreshing the page.</p>
+        <h3 class="text-lg font-semibold text-dark-text mb-2">{{ $t('hideout.no_stations_found') }}</h3>
+        <p class="text-dark-text-secondary">{{ $t('hideout.no_stations_description') }}</p>
       </div>
     </div>
   </div>

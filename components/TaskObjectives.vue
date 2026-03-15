@@ -1,6 +1,6 @@
 <template>
   <div class="space-y-3">
-    <h4 class="font-medium text-dark-text">Objectives:</h4>
+    <h4 class="font-medium text-dark-text">{{ $t('tasks.objectives') }}:</h4>
     <div class="space-y-2">
       <div
         v-for="(objective, index) in task.objectives"

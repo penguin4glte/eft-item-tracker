@@ -23,16 +23,16 @@
           </div>
           <div>
             <h3 class="text-lg font-semibold text-dark-text">{{ station.name }}</h3>
-            <p class="text-sm text-dark-text-secondary">Current Level: {{ currentLevel }}</p>
+            <p class="text-sm text-dark-text-secondary">{{ $t('hideout.current_level') }}: {{ currentLevel }}</p>
           </div>
         </div>
         <div class="flex items-center space-x-4">
           <div class="text-right">
             <div class="text-sm font-medium" :class="progressClass">
-              {{ completedLevels }} / {{ station.levels.length }} levels
+              {{ completedLevels }} / {{ station.levels.length }} {{ $t('hideout.levels') }}
             </div>
             <div class="text-xs text-dark-text-secondary">
-              {{ progressPercentage }}% Complete
+              {{ progressPercentage }}{{ $t('hideout.percent_complete') }}
             </div>
           </div>
           <div class="flex items-center space-x-2">
@@ -41,14 +41,14 @@
               @click="$emit('upgrade', station.id, currentLevel + 1)"
               class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition-colors"
             >
-              Upgrade to Level {{ currentLevel + 1 }}
+              {{ $t('hideout.upgrade_to_level', { n: currentLevel + 1 }) }}
             </button>
             <button
               v-if="currentLevel > 0"
               @click="$emit('downgrade', station.id, currentLevel - 1)"
               class="px-3 py-1 bg-red-600 hover:bg-red-700 text-white rounded text-sm transition-colors"
             >
-              Downgrade
+              {{ $t('hideout.downgrade') }}
             </button>
           </div>
         </div>
@@ -73,7 +73,7 @@
           </div>
           <div>
             <h3 class="text-base font-semibold text-dark-text">{{ station.name }}</h3>
-            <p class="text-xs text-dark-text-secondary">Current Level: {{ currentLevel }}</p>
+            <p class="text-xs text-dark-text-secondary">{{ $t('hideout.current_level') }}: {{ currentLevel }}</p>
           </div>
         </div>
         <div class="flex items-center justify-between">
@@ -82,7 +82,7 @@
               {{ completedLevels }} / {{ station.levels.length }}
             </div>
             <div class="text-xs text-dark-text-secondary">
-              {{ progressPercentage }}% Complete
+              {{ progressPercentage }}{{ $t('hideout.percent_complete') }}
             </div>
           </div>
           <div class="flex items-center gap-2">
@@ -91,14 +91,14 @@
               @click="$emit('upgrade', station.id, currentLevel + 1)"
               class="px-3 py-1.5 bg-green-600 hover:bg-green-700 text-white rounded-lg text-xs font-medium transition-colors"
             >
-              Upgrade L{{ currentLevel + 1 }}
+              {{ $t('hideout.upgrade_mobile', { n: currentLevel + 1 }) }}
             </button>
             <button
               v-if="currentLevel > 0"
               @click="$emit('downgrade', station.id, currentLevel - 1)"
               class="px-2 py-1 bg-red-600 hover:bg-red-700 text-white rounded text-xs transition-colors"
             >
-              Down
+              {{ $t('hideout.downgrade_short') }}
             </button>
           </div>
         </div>

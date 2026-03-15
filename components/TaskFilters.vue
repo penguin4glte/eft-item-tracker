@@ -21,7 +21,7 @@
           <svg class="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
           </svg>
-          ALL
+          {{ $t('tasks.all') }}
         </button>
         <button
           @click="$emit('category-change', 'traders')"
@@ -35,14 +35,14 @@
           <svg class="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
           </svg>
-          TRADERS
+          {{ $t('tasks.traders') }}
         </button>
       </div>
       
       <!-- Trader selection area -->
       <div class="flex-1 bg-dark-hover rounded-lg p-2 min-w-0 flex items-center justify-center">
         <div v-if="selectedCategory === 'all'" class="text-center">
-          <p class="text-xs md:text-sm text-dark-text-secondary uppercase tracking-wider">Showing All Sources</p>
+          <p class="text-xs md:text-sm text-dark-text-secondary uppercase tracking-wider">{{ $t('tasks.showing_all_sources') }}</p>
         </div>
         
         <div v-else-if="selectedCategory === 'traders'" class="w-full flex items-center gap-1 min-w-0">
@@ -71,8 +71,8 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
         <span class="mobile-short-text">
-          <span class="mobile-long">AVAILABLE</span>
-          <span class="mobile-short">AVAIL</span>
+          <span class="mobile-long">{{ $t('tasks.status_available') }}</span>
+          <span class="mobile-short">{{ $t('tasks.available_short') }}</span>
         </span>
       </button>
       <button
@@ -87,7 +87,7 @@
         <svg class="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
         </svg>
-        LOCKED
+        {{ $t('tasks.status_locked') }}
       </button>
       <button
         @click="$emit('filter-change', 'completed')"
@@ -102,8 +102,8 @@
           <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
         </svg>
         <span class="mobile-short-text">
-          <span class="mobile-long">COMPLETED</span>
-          <span class="mobile-short">DONE</span>
+          <span class="mobile-long">{{ $t('tasks.status_completed') }}</span>
+          <span class="mobile-short">{{ $t('tasks.completed_short') }}</span>
         </span>
       </button>
       <button
@@ -115,9 +115,9 @@
             : 'text-dark-text-secondary hover:text-white'
         ]"
       >
-        ALL
+        {{ $t('tasks.status_all') }}
       </button>
-      
+
       <div class="w-full md:w-auto md:flex-1"></div>
       
       <button
@@ -128,13 +128,13 @@
             ? 'text-white ring-2 ring-blue-500'
             : 'text-dark-text-secondary hover:text-white'
         ]"
-        :title="showTasksAboveLevel ? 'Hide tasks above your level' : 'Show tasks above your level'"
+        :title="showTasksAboveLevel ? $t('tasks.hide_above_level') : $t('tasks.show_above_level')"
       >
         <svg class="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
         </svg>
         <span class="mobile-short-text">
-          <span class="mobile-long">{{ showTasksAboveLevel ? 'HIDE' : 'SHOW' }} LVL {{ playerLevel }}+</span>
+          <span class="mobile-long">{{ showTasksAboveLevel ? $t('tasks.hide') : $t('tasks.show') }} {{ $t('tasks.level') }} {{ playerLevel }}+</span>
           <span class="mobile-short">L{{ playerLevel }}+</span>
         </span>
       </button>

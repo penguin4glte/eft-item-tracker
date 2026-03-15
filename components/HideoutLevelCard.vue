@@ -14,12 +14,12 @@
         <h4 :class="[
           'font-medium text-dark-text',
           isMobile ? 'text-sm' : ''
-        ]">Level {{ level.level }}</h4>
+        ]">{{ $t('hideout.level') }} {{ level.level }}</h4>
         <span :class="[
           'text-dark-text-secondary',
           isMobile ? 'text-xs' : 'text-sm'
         ]">
-          Construction Time: {{ level.constructionTime }}
+          {{ $t('hideout.construction_time') }}: {{ level.constructionTime }}
         </span>
       </div>
       <div class="text-right">
@@ -27,25 +27,25 @@
           'text-green-400 font-medium',
           isMobile ? 'text-xs' : 'text-sm'
         ]">
-          Current Level
+          {{ $t('hideout.current_level') }}
         </div>
         <div v-else-if="currentLevel > level.level" :class="[
           'text-green-400',
           isMobile ? 'text-xs' : 'text-sm'
         ]">
-          Completed
+          {{ $t('hideout.completed') }}
         </div>
         <div v-else-if="currentLevel === level.level - 1 && isLevelBuildable(station.id, level)" :class="[
           'text-blue-400',
           isMobile ? 'text-xs' : 'text-sm'
         ]">
-          Ready to build
+          {{ $t('hideout.ready_to_build') }}
         </div>
         <div v-else-if="!isLevelBuildable(station.id, level)" :class="[
           'text-red-400',
           isMobile ? 'text-xs' : 'text-sm'
         ]">
-          Prerequisites not met
+          {{ $t('hideout.prerequisites_not_met') }}
         </div>
       </div>
     </div>
@@ -56,7 +56,7 @@
         <h5 :class="[
           'font-medium text-dark-text mb-2',
           isMobile ? 'text-xs' : 'text-sm'
-        ]">Station Prerequisites:</h5>
+        ]">{{ $t('hideout.station_prerequisites') }}:</h5>
         <div class="space-y-2">
           <div
             v-for="requirement in level.stationLevelRequirements"
@@ -65,12 +65,12 @@
           >
             <div class="flex items-center space-x-3">
               <div class="text-sm font-medium text-dark-text">
-                {{ requirement.stationName }} Level {{ requirement.level }}
+                {{ requirement.stationName }} {{ $t('hideout.level') }} {{ requirement.level }}
               </div>
             </div>
             <div class="text-right">
               <div class="text-sm" :class="isStationLevelComplete(requirement.stationId, requirement.level) ? 'text-green-600' : 'text-red-600'">
-                {{ isStationLevelComplete(requirement.stationId, requirement.level) ? 'Complete' : 'Incomplete' }}
+                {{ isStationLevelComplete(requirement.stationId, requirement.level) ? $t('tasks.complete') : $t('tasks.incomplete') }}
               </div>
             </div>
           </div>
@@ -82,7 +82,7 @@
         <h5 :class="[
           'font-medium text-dark-text mb-2',
           isMobile ? 'text-xs' : 'text-sm'
-        ]">Item Requirements:</h5>
+        ]">{{ $t('hideout.item_requirements') }}:</h5>
         <div class="space-y-2">
           <div
             v-for="requirement in level.requirements"
@@ -117,7 +117,7 @@
                   'text-dark-text-secondary',
                   isMobile ? 'text-xs' : 'text-sm'
                 ]">
-                  Found in Raid required
+                  {{ $t('hideout.found_in_raid_required') }}
                 </p>
               </div>
             </div>
@@ -142,14 +142,14 @@
         <h5 :class="[
           'font-medium text-dark-text mb-2',
           isMobile ? 'text-xs' : 'text-sm'
-        ]">Skill Requirements:</h5>
+        ]">{{ $t('hideout.skill_requirements') }}:</h5>
         <div class="flex flex-wrap gap-2">
           <span
             v-for="requirement in level.skillRequirements"
             :key="requirement.skillId"
             class="inline-block px-2 py-1 text-xs bg-purple-900 text-purple-200 rounded"
           >
-            {{ requirement.skillName }} Level {{ requirement.level }}
+            {{ requirement.skillName }} {{ $t('hideout.level') }} {{ requirement.level }}
           </span>
         </div>
       </div>
@@ -159,14 +159,14 @@
         <h5 :class="[
           'font-medium text-dark-text mb-2',
           isMobile ? 'text-xs' : 'text-sm'
-        ]">Trader Requirements:</h5>
+        ]">{{ $t('hideout.trader_requirements') }}:</h5>
         <div class="flex flex-wrap gap-2">
           <span
             v-for="requirement in level.traderRequirements"
             :key="requirement.traderId"
             class="inline-block px-2 py-1 text-xs bg-orange-900 text-orange-200 rounded"
           >
-            {{ requirement.traderName }} Level {{ requirement.level }}
+            {{ requirement.traderName }} {{ $t('hideout.level') }} {{ requirement.level }}
           </span>
         </div>
       </div>

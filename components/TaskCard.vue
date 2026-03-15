@@ -17,7 +17,7 @@
         <p class="text-sm text-dark-text-secondary">
           {{ task.trader }} - 
           <span :class="task.level > playerLevel ? 'text-red-500 font-semibold' : ''">
-            Level {{ task.level }}
+            {{ $t('tasks.level') }} {{ task.level }}
           </span>
         </p>
         <p class="text-dark-text-secondary mt-2">{{ task.description }}</p>
@@ -48,7 +48,7 @@
         <p class="text-xs text-dark-text-secondary mb-2">
           {{ task.trader }} - 
           <span :class="task.level > playerLevel ? 'text-red-500 font-semibold' : ''">
-            Level {{ task.level }}
+            {{ $t('tasks.level') }} {{ task.level }}
           </span>
         </p>
         <p class="text-sm text-dark-text-secondary mb-3">{{ task.description }}</p>
@@ -69,7 +69,7 @@
         
         <!-- Show related parallel tasks -->
         <div v-if="task.parallelTaskIds && task.parallelTaskIds.length > 0 && taskCompletionStatuses[task.id]?.status !== 'completed'" class="text-xs text-dark-text-secondary">
-          <span>Alternatives: </span>
+          <span>{{ $t('tasks.alternatives') }}: </span>
           <span v-for="(parallelId, idx) in task.parallelTaskIds" :key="parallelId" class="inline">
             <span v-if="idx > 0"> | </span>
             <span 

@@ -1,6 +1,6 @@
 <template>
   <div class="space-y-3">
-    <h4 class="font-medium text-dark-text" :class="mobile ? 'text-sm' : ''">Item Requirements:</h4>
+    <h4 class="font-medium text-dark-text" :class="mobile ? 'text-sm' : ''">{{ $t('tasks.item_requirements') }}:</h4>
     <div class="space-y-2">
       <div
         v-for="requirement in requirements"
@@ -35,7 +35,7 @@
               'text-dark-text-secondary',
               mobile ? 'text-xs' : 'text-sm'
             ]">
-              {{ requirement.foundInRaid ? 'Found in Raid' : 'Any condition' }}
+              {{ requirement.foundInRaid ? $t('tasks.found_in_raid') : $t('tasks.any_condition') }}
             </p>
           </div>
         </div>
