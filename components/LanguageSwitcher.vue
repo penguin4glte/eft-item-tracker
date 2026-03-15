@@ -5,10 +5,11 @@
       @dblclick="toggleDebug"
       class="flex items-center space-x-2 bg-dark-surface border border-dark-border rounded-lg px-3 py-2 text-dark-text text-sm focus:outline-none focus:ring-2 focus:ring-eft-primary focus:border-transparent hover:bg-dark-hover transition-colors"
     >
-      <span 
-        class="fi" 
-        :class="getFlagClass(currentLocaleData?.flag)"
-      ></span>
+      <img
+        :src="getFlagSrc(currentLocaleData?.code)"
+        :alt="currentLocaleData?.name"
+        class="flag-img"
+      />
       <span class="hidden sm:inline">{{ currentLocaleData?.name }}</span>
       <svg class="w-4 h-4 transition-transform" :class="{ 'rotate-180': isDropdownOpen }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -18,16 +19,17 @@
     <!-- Dropdown -->
     <div v-if="isDropdownOpen" class="absolute top-full left-0 mt-1 bg-dark-surface border border-dark-border rounded-lg shadow-lg z-50 min-w-[60px]">
       <button
-        v-for="localeOption in availableLocales"
+        v-for="localeOption in locales"
         :key="localeOption.code"
         @click="selectLocale(localeOption.code)"
         class="w-full flex items-center justify-center px-3 py-2 text-sm text-dark-text hover:bg-dark-hover first:rounded-t-lg last:rounded-b-lg"
         :class="{ 'bg-dark-hover': localeOption.code === currentLocale }"
       >
-        <span 
-          class="fi" 
-          :class="getFlagClass(localeOption.flag)"
-        ></span>
+        <img
+          :src="getFlagSrc(localeOption.code)"
+          :alt="localeOption.name"
+          class="flag-img"
+        />
       </button>
     </div>
     
@@ -35,7 +37,7 @@
     <div v-if="showDebug" class="absolute top-full left-0 mt-1 p-2 bg-gray-800 text-white text-xs rounded shadow-lg z-50">
       <div>Current locale: {{ locale }}</div>
       <div>Test translation: {{ $t('navigation.home') }}</div>
-      <div>Available locales: {{ availableLocales.map(l => l.code).join(', ') }}</div>
+      <div>Available locales: {{ locales.map(l => l.code).join(', ') }}</div>
     </div>
   </div>
 </template>
@@ -44,22 +46,20 @@
 const { locale, locales, setLocale } = useI18n()
 
 const currentLocale = ref(locale.value)
-const availableLocales = locales.value
 const showDebug = ref(false)
 const isDropdownOpen = ref(false)
 
-// Computed property to get current locale data
+// Computed property to get current locale data (use locales directly for reactivity)
 const currentLocaleData = computed(() => {
-  return availableLocales.find(l => l.code === currentLocale.value)
+  return locales.value.find(l => l.code === currentLocale.value)
 })
 
-// Get flag class for flag-icons
-const getFlagClass = (flag) => {
+const getFlagSrc = (code) => {
   const flagMap = {
-    'US': 'fi-us',
-    'JP': 'fi-jp'
+    'en': '/flags/us.svg',
+    'ja': '/flags/jp.svg'
   }
-  return flagMap[flag] || ''
+  return flagMap[code] || ''
 }
 
 // Toggle dropdown
@@ -133,19 +133,16 @@ onUnmounted(() => {
   transform: rotate(180deg);
 }
 
-/* Flag icon styles - Standard flag ratio is 3:2 */
-.fi {
+.flag-img {
   width: 1.5rem;
   height: 1rem;
   border-radius: 0.125rem;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
-  display: inline-block;
-  background-size: cover;
-  background-position: center;
+  object-fit: cover;
 }
 
-.fi:hover {
+.flag-img:hover {
   transform: scale(1.05);
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }

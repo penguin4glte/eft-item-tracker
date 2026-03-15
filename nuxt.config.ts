@@ -102,8 +102,7 @@ export default defineNuxtConfig({
         { rel: 'preconnect', href: 'https://assets.tarkov.dev' },
         { rel: 'preconnect', href: 'https://firebaseapp.com' },
         { rel: 'preconnect', href: 'https://googleapis.com' },
-        { rel: 'dns-prefetch', href: 'https://assets.tarkov.dev' },
-        { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css' }
+        { rel: 'dns-prefetch', href: 'https://assets.tarkov.dev' }
       ],
       script: [
         {
