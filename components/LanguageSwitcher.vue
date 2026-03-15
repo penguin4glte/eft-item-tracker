@@ -110,10 +110,19 @@ watch(locale, (newLocale) => {
   currentLocale.value = newLocale
 })
 
-// Add click outside listener
+// Add click outside listener and restore saved locale
 onMounted(() => {
   if (process.client) {
     document.addEventListener('click', closeDropdown)
+
+    // Restore locale from cookie on page load
+    const match = document.cookie.split(';').map(c => c.trim()).find(c => c.startsWith('i18n_redirected='))
+    if (match) {
+      const saved = decodeURIComponent(match.slice('i18n_redirected='.length))
+      if (saved && saved !== locale.value) {
+        setLocale(saved)
+      }
+    }
   }
 })
 

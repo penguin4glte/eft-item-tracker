@@ -26,13 +26,7 @@ export default defineNuxtConfig({
     ],
     langDir: 'locales',
     lazy: false,
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n_redirected',
-      redirectOn: 'root',
-      alwaysRedirect: true,
-      fallbackLocale: 'en'
-    }
+    detectBrowserLanguage: false
   },
   
   nitro: {
