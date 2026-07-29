@@ -50,6 +50,8 @@ const fetchHideout = async () => {
     return cachedStations
   }
 
+  const { reportApiError, clearApiError } = useApiError()
+
   try {
     const { getHideout } = useTarkovAPI()
     const stations = await getHideout()
@@ -112,12 +114,14 @@ const fetchHideout = async () => {
       
       lastFetchTime = now
       hideoutStations.splice(0, hideoutStations.length, ...cachedStations)
+      clearApiError(fetchHideout)
       return cachedStations
     }
-    
+
     return []
   } catch (error) {
     console.error('Failed to fetch hideout data from Tarkov API:', error)
+    reportApiError(fetchHideout)
     return []
   }
 }

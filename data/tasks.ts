@@ -30,6 +30,8 @@ const fetchTasks = async () => {
     return cachedTasks
   }
 
+  const { reportApiError, clearApiError } = useApiError()
+
   try {
     const { getTasks } = useTarkovAPI()
     const tasks = await getTasks()
@@ -137,9 +139,11 @@ const fetchTasks = async () => {
     
     lastFetchTime = now
     eftTasks.splice(0, eftTasks.length, ...cachedTasks)
+    clearApiError(fetchTasks)
     return cachedTasks
   } catch (error) {
     console.error('Failed to fetch tasks from Tarkov API:', error)
+    reportApiError(fetchTasks)
     return []
   }
 }

@@ -19,6 +19,8 @@ const fetchTraders = async () => {
     return cachedTraders
   }
 
+  const { reportApiError, clearApiError } = useApiError()
+
   try {
     const { getTraders } = useTarkovAPI()
     const traders = await getTraders()
@@ -34,9 +36,11 @@ const fetchTraders = async () => {
     
     lastFetchTime = now
     eftTraders.splice(0, eftTraders.length, ...cachedTraders)
+    clearApiError(fetchTraders)
     return cachedTraders
   } catch (error) {
     console.error('Failed to fetch traders from Tarkov API:', error)
+    reportApiError(fetchTraders)
     return []
   }
 }

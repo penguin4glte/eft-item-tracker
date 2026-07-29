@@ -4,6 +4,7 @@
     <Header />
     <TabNavigation />
     <main class="container mx-auto py-8 flex-1 min-h-[calc(100vh-240px)]">
+      <ApiErrorBanner />
       <NuxtPage />
     </main>
     <Footer />

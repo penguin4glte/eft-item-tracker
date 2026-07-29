@@ -12,6 +12,8 @@ const fetchItems = async () => {
     return cachedItems
   }
 
+  const { reportApiError, clearApiError } = useApiError()
+
   try {
     const { getItems } = useTarkovAPI()
     const items = await getItems()
@@ -37,9 +39,11 @@ const fetchItems = async () => {
     
     lastFetchTime = now
     eftItems.splice(0, eftItems.length, ...cachedItems)
+    clearApiError(fetchItems)
     return cachedItems
   } catch (error) {
     console.error('Failed to fetch items from Tarkov API:', error)
+    reportApiError(fetchItems)
     return []
   }
 }

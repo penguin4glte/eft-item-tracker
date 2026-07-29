@@ -172,5 +172,11 @@
     "filter": "Filter",
     "sort": "Sort",
     "reset": "Reset"
+  },
+  "api_error": {
+    "title": "Failed to load game data",
+    "message": "The tarkov.dev API is currently unavailable. Item, task, and hideout data could not be loaded.",
+    "retry": "Retry",
+    "retrying": "Retrying..."
   }
 }
